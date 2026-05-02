@@ -1,8 +1,8 @@
 from playwright.sync_api import Page, expect
 
+url = 'https://web-qa.dev.adalab.es'
+
 def test_navigation_through_about_link(page: Page):
-    url = 'https://web-qa.dev.adalab.es'
-    
     print("When the user enters the 'Vida Verde' page")
     page.goto(url)
     print("When the user clicks on 'Quienes Somos'")
@@ -11,8 +11,6 @@ def test_navigation_through_about_link(page: Page):
     expect(page).to_have_url(f'{url}/about')
 
 def test_navigation_through_products_links(page: Page):
-    url = 'https://web-qa.dev.adalab.es'
-
     print("When the user enters the 'Vida Verde' page")
     page.goto(url)
     print("When the user clicks on 'Products'")
@@ -21,8 +19,6 @@ def test_navigation_through_products_links(page: Page):
     expect(page).to_have_url(f'{url}/products')
 
 def test_navigation_through_contact_links(page: Page):
-    url = 'https://web-qa.dev.adalab.es'
-
     print("When the user enters the 'Vida Verde' page")
     page.goto(url)
     print("When the user clicks on 'Contact Us'")
