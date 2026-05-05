@@ -27,5 +27,14 @@ def test_Submit_form_with_required_name_field_empty(page: Page):
     print('Then they should see an error message "El nombre es obligatorio"')
     expect(page.get_by_text("El nombre es obligatorio")).to_be_visible()
    
-
+def test_empty_email_field_confirmation(page: Page):
+    print("Given the user is on the contact page Contáctanos | Vida Verde  with the email field empty")
+    page.goto("https://web-qa.dev.adalab.es/contact")
+    print("When the user fills the required fields name and message")
+    page.get_by_role("textbox", name="Nombre *").fill("Marta Diaz")
+    page.get_by_role("textbox", name="Mensaje *").fill("Test")
+    page.get_by_role("button", name="Enviar Mensaje").click()
+    print("Then then the error message is displayed: El email es obligatorio ")
+    expect(page.get_by_text("El email es obligatorio")).to_be_visible()
+    
    
