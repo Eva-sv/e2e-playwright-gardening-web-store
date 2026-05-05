@@ -12,5 +12,11 @@ def test_submit_form_with_required_message_field_left_empty(page: Page):
     print('Then they should see an error message: "Message is required"')
     expect(page.get_by_text("El mensaje es obligatorio")).to_be_visible()
 
-    
 
+from playwright.sync_api import Page, expect
+
+def test_Submit_form_with_required_name_field_empty(page: Page):
+
+    print("Given user visit homepage")
+    page.goto("https://web-qa.dev.adalab.es")
+    
