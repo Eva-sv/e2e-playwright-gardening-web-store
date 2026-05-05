@@ -12,3 +12,5 @@ def test_submit_form_with_required_message_field_left_empty(page: Page):
     print('Then they should see an error message: "Message is required"')
     expect(page.get_by_text("El mensaje es obligatorio")).to_be_visible()
 
+    
+
