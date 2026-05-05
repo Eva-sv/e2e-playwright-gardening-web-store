@@ -26,6 +26,8 @@ def test_Submit_form_with_required_name_field_empty(page: Page):
     page.get_by_role("button", name="Enviar Mensaje").click()
     print('Then they should see an error message "El nombre es obligatorio"')
     expect(page.get_by_text("El nombre es obligatorio")).to_be_visible()
+
+
    
 def test_empty_email_field_confirmation(page: Page):
     print("Given the user is on the contact page Contáctanos | Vida Verde  with the email field empty")
@@ -34,7 +36,35 @@ def test_empty_email_field_confirmation(page: Page):
     page.get_by_role("textbox", name="Nombre *").fill("Marta Diaz")
     page.get_by_role("textbox", name="Mensaje *").fill("Test")
     page.get_by_role("button", name="Enviar Mensaje").click()
-    print("Then then the error message is displayed: El email es obligatorio ")
+    print("Then the error message is displayed: El email es obligatorio ")
     expect(page.get_by_text("El email es obligatorio")).to_be_visible()
+
+
+
+def test_submit_form_with_invalid_emails(page: Page):
+    print("Given the user is on the contact page Contáctanos | Vida Verde")
+    page.goto("https://web-qa.dev.adalab.es/contact")
+    print("When the user fills the required fields name whith 'Marta Diaz'")
+    page.get_by_role("textbox", name="Nombre *").fill("Marta Diaz")
+    print("and the user fills the required fields whith an invalid email")
+    page.get_by_role("textbox", name="Email *").fill("email")
+    print("and the user fills the required fields test messaje with 'Test mensaje'")
+    page.get_by_role("textbox", name="Mensaje *").fill("test mensaje")
+    page.get_by_role("button", name="Enviar Mensaje").click()
+    print("Then the error message is displayed: El email no es válido")
+    expect(page.get_by_text("El formato del email no es vá")).to_be_visible()
+
+def test_submit_forms_with_valid_required_fields(page: Page):
+    print("Given the user is on the contact page Contáctanos | Vida Verde")
+    page.goto("https://web-qa.dev.adalab.es/contact")
+    print("When the user fills Fill in the name with 'Marta Diaz'")
+    page.get_by_role("textbox", name="Nombre *").fill("marta Diaz")
+    print("And fill in the email with 'test_automation@test.com'")
+    page.get_by_role("textbox", name="Email *").fill("test_automation@test.com")
+    print("And fill in the message with 'test mensaje'")
+    page.get_by_role("textbox", name="Mensaje *").fill("test mensaje")
+    page.get_by_role("button", name="Enviar Mensaje").click()
+    expect(page.get_by_role("heading", name="¡Mensaje enviado con éxito!")).to_be_visible()
+    
     
    
