@@ -27,3 +27,5 @@ def test_Submit_form_with_required_name_field_empty(page: Page):
     print('Then they should see an error message "El nombre es obligatorio"')
     expect(page.get_by_text("El nombre es obligatorio")).to_be_visible()
    
+
+   
