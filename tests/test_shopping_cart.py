@@ -1,0 +1,60 @@
+from playwright.sync_api import Page, expect
+
+def test_add_products_to_cart_view_summary_and_empty_cart(page: Page):
+
+    print("Given user visit the page 'Productos | Vida Verde'")
+    page.goto("https://web-qa.dev.adalab.es/products")
+    print("When the user adds the Sansevieria to the cart")
+    page.get_by_role("searchbox", name="Nombre").fill("sansevieria")
+    print("And the user clicks on the add to cart button")
+    page.get_by_role("button", name="Añadir Sansevieria al carrito").click()
+    print("And the user clean the filters and see all the products")    
+    page.get_by_role("button", name="Quitar filtros y ver todos").click()
+    print("And the user adds the Maceta de Barro Grande to the cart")
+    page.get_by_role("searchbox", name="Nombre").fill("maceta de barro")
+    print("And the user clicks on the add to cart button")
+    page.get_by_role("button", name="Añadir Maceta de Barro Grande").click()
+    print("And the user clicks on the shopping cart link")
+    page.get_by_role("link", name="Carrito de compra").click()
+    print("Then the user should see the shopping cart summary with the products added")
+    expect(page.get_by_role("heading", name="Sansevieria")).to_be_visible()
+    expect(page.get_by_text("Plantas")).to_be_visible()
+    expect(page.get_by_text("22.00 €")).to_be_visible()
+    expect(page.get_by_role("heading", name="Maceta de Barro Grande")).to_be_visible()
+    expect(page.get_by_text("Macetas")).to_be_visible()
+    expect(page.get_by_text("10.50 €")).to_be_visible()
+    expect(page.get_by_role("heading", name="Resumen del Pedido")).to_be_visible()
+    expect(page.get_by_text("32.50 €")).to_be_visible()
+    expect(page.get_by_text("6.83 €")).to_be_visible()
+    expect(page.get_by_text("5.00 €")).to_be_visible()
+    expect(page.get_by_role("button", name="Vaciar Carrito")).to_be_visible()
+    page.get_by_role("button", name="Vaciar Carrito").click()
+    expect(page.get_by_text("Tu carrito está vacío")).to_be_visible()
+
+from playwright.sync_api import Page, expect
+
+def test_remove_products_from_cart_and_view_summary(page: Page):
+
+    print("Given user visit the page 'Productos | Vida Verde'")
+    page.goto("https://web-qa.dev.adalab.es/products")
+    print("When the user adds the Ficus to the cart")
+    page.get_by_role("searchbox", name="Nombre").fill("ficus")
+    print("And the user clicks on the add to cart button")
+    page.get_by_role("button", name="Añadir Ficus Lyrata al carrito").click()
+    print("And the user clean the filters and see all the products")    
+    page.get_by_role("button", name="Quitar filtros y ver todos").click()
+    print("And the user adds the Tijeras de Podar to the cart")
+    page.get_by_role("searchbox", name="Nombre").fill("tijeras")
+    page.get_by_role("button", name="Añadir Tijeras de Podar al carrito").click()
+    print("And the user clicks on the shopping cart link")
+    page.get_by_role("link", name="Carrito de compra").click()
+    print("And the user removes the Ficus from the cart")
+    page.get_by_role("button", name="Eliminar Ficus Lyrata del carrito").click()
+    expect(page.get_by_role("heading", name="Ficus Lyrata")).not_to_be_visible()
+    expect(page.get_by_role("heading", name="Resumen del Pedido")).to_be_visible()
+    expect(page.get_by_label("Resumen del Pedido").get_by_text("18.50 €")).to_be_visible()
+    expect(page.get_by_text("3.88 €")).to_be_visible()
+    expect(page.get_by_text("5.00 €")).to_be_visible()
+    expect(page.get_by_text("27.38 €")).to_be_visible()
+
+
