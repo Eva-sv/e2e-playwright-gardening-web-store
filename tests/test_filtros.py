@@ -14,4 +14,7 @@ def test_filter_by_valid_name_price_and_category(page: Page):
     page.get_by_role("spinbutton", name="Precio máximo").fill("25")
     expect(page.get_by_text("No se encontraron productos")).to_be_visible()
 
-   
+   from playwright.sync_api import Page, expect
+
+def Filter_by_name_with_no_results(page: Page):
+
