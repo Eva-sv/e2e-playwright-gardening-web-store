@@ -4,7 +4,7 @@ class CheckoutPage:
     def __init__(self, page: Page):
          self.page = page
          
-    def Check_carrito(self):
+
  
 
         
