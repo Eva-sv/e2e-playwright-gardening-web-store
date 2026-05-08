@@ -1,8 +1,13 @@
 from playwright.sync_api import Page, expect
+from check_out_page import CheckoutPage
+from products_page import ProductsPage
+from shopping_cart_page import ShoppingcartPage
 
 url = 'https://web-qa.dev.adalab.es/products'
 
 def test_checkout_with_valid_payment_details(page: Page):
+    
+    # Logica del ProductsPAge
     print("When the user enters to the products page")
     page.goto(url)
     print("When they filter by name 'palas'")
@@ -11,8 +16,12 @@ def test_checkout_with_valid_payment_details(page: Page):
     page.get_by_role("button", name="Añadir Juego de Palas al").click()
     print("And visit the cart page")
     page.get_by_role("link", name="Carrito de compra").click()
+    
+    # Logica del CartsPage
     print("And click on 'Proceed to checkout'")
     page.get_by_role("link", name="Proceder al Pago").click()
+    
+    # Logica CheckoutPage
     print("Then they should see the order summary with:'product:juego de palas','price: 15.99', 'subtotal:15.99','iva: 3.36', 'shipping: 5', 'total: 24'")
     expect(page.get_by_role("heading", name="Resumen del Pedido")).to_be_visible()
     expect(page.get_by_role("heading", name="Resumen del Pedido")).to_be_visible()
