@@ -1,10 +1,12 @@
 from playwright.sync_api import Page, expect
+from menu_page import MenuPage
 
 url = 'https://web-qa.dev.adalab.es'
 
 def test_navigation_through_about_link(page: Page):
     print("When the user enters the 'Vida Verde' page")
-    page.goto(url)
+    #page.goto(url)
+    MenuPage.open_menu_page()
     print("When the user clicks on 'Quienes Somos'")
     page.get_by_role("link", name="Quiénes Somos").click()
     expect(page.get_by_role("heading", name="Quiénes Somos")).to_be_visible()

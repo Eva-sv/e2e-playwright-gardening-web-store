@@ -1,5 +1,5 @@
 from playwright.sync_api import Page, expect
 
-class ContactPage:
+class ContactoPage:
     def __init__(self, page: Page):
          self.page = page
