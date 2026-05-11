@@ -22,14 +22,14 @@ def test_checkout_with_valid_payment_details(page: Page):
     ProductsPage.click_product_to_the_cart()
 
     print("And visit the cart page")
-    page.get_by_role("link", name="Carrito de compra").click()
+    ProductsPage.click_cart_page()
     
     # Logica del CartsPage
     print("And click on 'Proceed to checkout'")
-    page.get_by_role("link", name="Proceder al Pago").click()
+    ShoppingcartPage.click_proceed_to_check_out()
     
     print("Then they should see the order summary with:'product:juego de palas','price: 15.99', 'subtotal:15.99','iva: 3.36', 'shipping: 5', 'total: 24'")
-    #ShoppingCartPage.verify_order_summary()
+    ShoppingcartPage.verify_order_summary()
 
     print("When they fill in the valid name field 'Maria Diaz'")
     CheckoutPage.fill_valid_name_field()
@@ -64,16 +64,16 @@ def test_checkout_with_invalid_card_details(page: Page):
     ProductsPage.open_products_page()
 
     print("When they filter by name 'palas'")
-    page.get_by_role("searchbox", name="Nombre").fill("palas")
+    ProductsPage.filter_by_palas()
 
     print("And add the product to the cart")
-    page.get_by_role("button", name="Añadir Juego de Palas al").click()
+    ProductsPage.click_product_to_the_cart()
 
     print("And visit the cart page")
-    page.get_by_role("link", name="Carrito de compra").click()
+    ProductsPage.click_cart_page()
 
     print("And click on 'Proceed to checkout'")
-    page.get_by_role("link", name="Proceder al Pago").click()
+    ShoppingcartPage.click_proceed_to_check_out()
 
     print("When they fill in the valid name field 'Maria Diaz'")
     CheckoutPage.fill_valid_name_field()
@@ -100,16 +100,16 @@ def test_checkout_without_card_details(page: Page):
     ProductsPage.open_products_page()
 
     print("When they filter by name 'palas'")
-    page.get_by_role("searchbox", name="Nombre").fill("palas")
+    ProductsPage.filter_by_palas()
 
     print("And add the product to the cart")
-    page.get_by_role("button", name="Añadir Juego de Palas al").click()
+    ProductsPage.click_product_to_the_cart()
 
     print("And visit the cart page")
-    page.get_by_role("link", name="Carrito de compra").click()
+    ProductsPage.click_cart_page()
 
     print("And click on 'Proceed to checkout'")
-    page.get_by_role("link", name="Proceder al Pago").click()
+    ShoppingcartPage.click_proceed_to_check_out()
 
     print("When they fill in the valid name field 'Maria Diaz'")
     CheckoutPage.fill_valid_name_field()

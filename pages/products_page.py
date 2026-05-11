@@ -2,7 +2,6 @@
 from playwright.sync_api import Page, expect
 
 
-
 class ProductsPage:
 
     def __init__(self, page: Page):
@@ -10,8 +9,6 @@ class ProductsPage:
         self.url = 'https://web-qa.dev.adalab.es/products'
         self.title = "Catálogo de Productos"
         
-
-    
     def open_products_page(self):
         self.page.goto(self.url)
 
@@ -35,18 +32,12 @@ class ProductsPage:
 
     def click_product_to_the_cart(self):
          self.page.get_by_role("button", name="Añadir Juego de Palas al").click()
-    
+
+    def click_cart_page(self):
+        self.page.get_by_role("link", name="Carrito de compra").click()
 
 
-from playwright.sync_api import Page
-
-
-class ProductsPage:
-    def __init__(self, page: Page):
-        self.page = page
-        self.url = 'https://web-qa.dev.adalab.es/products'
-        self.title = "Catálogo de Productos"
-
+    #lucia
     def navigate(self):
         self.page.goto("https://web-qa.dev.adalab.es/products")
 
@@ -61,22 +52,6 @@ class ProductsPage:
 
     def filter_by_max_price(self, max_price):
         self.page.get_by_role("spinbutton",name="Precio máximo").fill(max_price)
-
-
-from playwright.sync_api import Page
-class ProductsPage:
-    def __init__(self, page: Page):
-        self.page = page
-        self.url = 'https://web-qa.dev.adalab.es/products'
-        self.title = "Catálogo de Productos"
-
-
-class ProductsPage:
-    def __init__(self, page: Page):
-        self.page = page
-
-    def navigate(self):
-        self.page.goto("https://web-qa.dev.adalab.es/products")
 
     def filter_by_name(self, name):
         self.page.get_by_role("searchbox", name="Nombre").fill(name)
