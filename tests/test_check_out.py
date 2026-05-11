@@ -9,7 +9,8 @@ def test_checkout_with_valid_payment_details(page: Page):
     
     # Logica del ProductsPAge
     print("When the user enters to the products page")
-    page.goto(url)
+    ProductsPage.open_products_page()
+    
     print("When they filter by name 'palas'")
     page.get_by_role("searchbox", name="Nombre").fill("palas")
     print("And add the product to the cart")
