@@ -1,10 +1,4 @@
 from playwright.sync_api import Page, expect
-from about_us_page import AboutusPage
-from contacto_page import ContactoPage
-from products_page import ProductsPage
-from shopping_cart_page import ShoppingcartPage
-
-
 
 
 class HomePage:
@@ -12,4 +6,12 @@ class HomePage:
     def __init__(self, page: Page):
         self.page = page
         self.url = "https://web-qa.dev.adalab.es/"
+        self.title = 'Vida Verde'
+
+
+    def open_home_page(self):
+        self.page.goto(self.url)
+
+    def verify_home_page_title(self):
+         expect(self.page.get_by_role("heading", name=self.title)).to_be_visible()
         

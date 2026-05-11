@@ -1,30 +1,66 @@
 from playwright.sync_api import Page, expect
-from menu_page import MenuPage
+from pages.components.menu import Menu
+from pages.home_page import HomePage
+from pages.about_us_page import AboutusPage
+from pages.products_page import ProductsPage
+from pages.contacto_page import ContactoPage
 
-url = 'https://web-qa.dev.adalab.es'
 
-def test_navigation_through_about_link(page: Page):
+
+def test_visit_menu_links(page: Page):
+    home_page = HomePage (page)
+    menu = Menu(page)
+    about_us_page = AboutusPage(page)
+    products_page = ProductsPage(page)
+    contacto_page = ContactoPage(page)
+   
+
+
     print("When the user enters the 'Vida Verde' page")
-    #page.goto(url)
-    MenuPage.open_menu_page()
+    home_page.open_home_page()
+
+    print("Then they should see the title 'Vida Verde'")
+    home_page.verify_home_page_title()
+
     print("When the user clicks on 'Quienes Somos'")
-    page.get_by_role("link", name="Quiénes Somos").click()
-    expect(page.get_by_role("heading", name="Quiénes Somos")).to_be_visible()
-    expect(page).to_have_url(f'{url}/about')
+    menu.visit_menu_about_us()
 
-def test_navigation_through_products_links(page: Page):
-    print("When the user enters the 'Vida Verde' page")
-    page.goto(url)
-    print("When the user clicks on 'Products'")
-    page.get_by_role("link", name="Productos", exact=True).click()
-    expect(page.get_by_role("heading", name="Productos")).to_be_visible()
-    expect(page).to_have_url(f'{url}/products')
+    print("Then they should see the tittle 'Quienes Somos'")
+    about_us_page.verify_about_us_title()
 
-def test_navigation_through_contact_links(page: Page):
-    print("When the user enters the 'Vida Verde' page")
-    page.goto(url)
-    print("When the user clicks on 'Contact Us'")
-    page.get_by_role("link", name="Contacto").click()
-    expect(page.get_by_role("heading", name="Contacto")).to_be_visible()
-    expect(page).to_have_url(f'{url}/contact')
+    print("And they should see the URL 'https://web-qa.dev.adalab.es/about'")
+    about_us_page.verify_about_us_url()
+    
+    print("When the user clicks on 'Productos'")
+    menu.visit_menu_products()
+
+    print("Then they should see the tittle 'Catálogo de Productos'")
+    products_page.verify_products_title()
+
+    print("And they should see the URL 'https://web-qa.dev.adalab.es/products'")
+    products_page.verify_products_url()
+
+    print("When the user clicks on 'Contacto'")
+    menu.visit_menu_contacto()
+
+    print("Then they should see the tittle 'Contáctanos'")
+    contacto_page.verify_contacto_title()
+
+    print("And they should see the URL 'https://web-qa.dev.adalab.es/contact'")
+    contacto_page.verify_contacto_url()
+
+
+
+
+
+
+
+    
+
+
+   
+ 
+
+
+
 

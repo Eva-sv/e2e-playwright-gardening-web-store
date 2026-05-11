@@ -3,7 +3,7 @@ from check_out_page import CheckoutPage
 from products_page import ProductsPage
 from shopping_cart_page import ShoppingcartPage
 
-url = 'https://web-qa.dev.adalab.es/products'
+url ='https://web-qa.dev.adalab.es/products'
 
 def test_checkout_with_valid_payment_details(page: Page):
     
