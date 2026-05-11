@@ -44,58 +44,61 @@ def test_form_with_required_name_field_left_empty(page: Page):
    
 def test_empty_email_field_confirmation(page: Page):
     print("Given the user is on the contact page Contáctanos | Vida Verde  with the email field empty")
-    page.goto("https://web-qa.dev.adalab.es/contact")
-
+    contact_page = ContactPage(page)
+    contact_page.open_contact_page()
+    
     print("When the user fills the required fields name with 'Marta Diaz'")
-    page.get_by_role("textbox", name="Nombre *").fill("Marta Diaz")
-
+    contact_page.fill_contact_name("Marta Diaz")
+    
     print("And the user fills the required fields message")
-    page.get_by_role("textbox", name="Mensaje *").fill("Test")
+    contact_page.fill_contact_message("Test")
 
     print("And the user  click on the button 'Enviar Mensaje'")
-    page.get_by_role("button", name="Enviar Mensaje").click()
-
+    contact_page.press_send_contact()
+    
     print("Then the error message is displayed: El email es obligatorio ")
-    expect(page.get_by_text("El email es obligatorio")).to_be_visible()
+    contact_page.verify_message_form("El email es obligatorio")
+    
 
 
 
 def test_submit_form_with_invalid_emails(page: Page):
     print("Given the user is on the contact page Contáctanos | Vida Verde")
-    page.goto("https://web-qa.dev.adalab.es/contact")
+    contact_page = ContactPage(page)
+    contact_page.open_contact_page()
 
     print("When the user fills the required fields name whith 'Marta Diaz'")
-    page.get_by_role("textbox", name="Nombre *").fill("Marta Diaz")
+    contact_page.fill_contact_name("Marta Diaz")
 
     print("and the user fills the required fields whith an invalid email")
-    page.get_by_role("textbox", name="Email *").fill("email")
+    contact_page.fill_contact_email("email")
 
     print("and the user fills the required fields test messaje with 'Test mensaje'")
-    page.get_by_role("textbox", name="Mensaje *").fill("test mensaje")
+    contact_page.fill_contact_message("Test mensaje")
 
     print("And the user  click on the button 'Enviar Mensaje'")
-    page.get_by_role("button", name="Enviar Mensaje").click()
+    contact_page.press_send_contact()
 
     print("Then the error message is displayed: El email no es válido")
-    expect(page.get_by_text("El formato del email no es válido")).to_be_visible()
+    contact_page.verify_message_error("El email no es válido")
 
 def test_submit_forms_with_valid_required_fields(page: Page):
     print("Given the user is on the contact page Contáctanos | Vida Verde")
-    page.goto("https://web-qa.dev.adalab.es/contact")
+    contact_page = ContactPage(page)
+    contact_page.open_contact_page()
 
     print("When the user fills Fill in the name with 'Marta Diaz'")
-    page.get_by_role("textbox", name="Nombre *").fill("marta Diaz")
+    contact_page.fill_contact_name("Marta Diaz")
 
     print("And fill in the email with 'test_automation@test.com'")
-    page.get_by_role("textbox", name="Email *").fill("test_automation@test.com")
+    contact_page.fill_contact_email("test_automation@test.com")
 
     print("And fill in the message with 'test mensaje'")
-    page.get_by_role("textbox", name="Mensaje *").fill("test mensaje")
+    contact_page.fill_contact_message("test mensaje")
 
     print("And click on the button 'Enviar Mensaje'")
-    page.get_by_role("button", name="Enviar Mensaje").click()
+    contact_page.press_send_contact()
 
     print ("Then the user should see the confirmation message: ¡Mensaje enviado con éxito!")
-    expect(page.get_by_role("heading", name="¡Mensaje enviado con éxito!")).to_be_visible()
-    
+    contact_page.verify_message_form("¡Mensaje enviado con éxito!")    
     

@@ -30,3 +30,6 @@ class ContactPage:
 
     def verify_contact_url(self):
         expect(self.page).to_have_url(self.url)
+
+    def verify_message_error(self,text):
+        expect(self.page.get_by_text(text)).to_be_visible()
