@@ -17,6 +17,6 @@ def test_products_page(page: Page):
     print("And the user should see the product name 'Ficus Lyrata'")
     products_page.verify_products_name("Ficus Lyrata")
     
-    print("And the user should see the product price '35.00E")
-    products_page.verify_products_price("35.00E")
+    print("And the user should see the product price '35.00 €")
+    products_page.verify_products_price("35.00 €")
     
