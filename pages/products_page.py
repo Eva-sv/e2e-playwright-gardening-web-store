@@ -53,10 +53,7 @@ class ProductsPage:
         self.page.get_by_label("Categoría").select_option(category)
 
     def filter_by_min_price(self, min_price):
-        self.page.get_by_role(
-            "spinbutton",
-            name="Precio mínimo"
-        ).fill(min_price)
+        self.page.get_by_role("spinbutton",name="Precio mínimo").fill(min_price)
 
     def filter_by_max_price(self, max_price):
         self.page.get_by_role("spinbutton",name="Precio máximo").fill(max_price)
