@@ -1,14 +1,13 @@
 from playwright.sync_api import Page, expect
-from check_out_page import CheckoutPage
-from products_page import ProductsPage
-from shopping_cart_page import ShoppingcartPage
+from pages.checkout_page import CheckoutPage
+from pages.products_page import ProductsPage
+from pages.shopping_cart_page import ShoppingcartPage
 
 
 def test_checkout_with_valid_payment_details(page: Page):
     products_page = ProductsPage(page)
     check_out_page = CheckoutPage(page)
     shopping_cart_page = ShoppingcartPage(page)
-
 
     
     # Logica del ProductsPAge
@@ -60,71 +59,79 @@ def test_checkout_with_valid_payment_details(page: Page):
 
     
 def test_checkout_with_invalid_card_details(page: Page):
+
+    products_page = ProductsPage(page)
+    check_out_page = CheckoutPage(page)
+    shopping_cart_page = ShoppingcartPage(page)
     
     print("When the user enters to the products page")
-    prod.open_products_page()
+    products_page.open_products_page()
 
     print("When they filter by name 'palas'")
-    pro.filter_by_palas()
+    products_page.filter_by_palas()
 
     print("And add the product to the cart")
-    ProductsPage.click_product_to_the_cart()
+    products_page.click_product_to_the_cart()
 
     print("And visit the cart page")
-    ProductsPage.click_cart_page()
+    products_page.click_cart_page()
 
     print("And click on 'Proceed to checkout'")
-    ShoppingcartPage.click_proceed_to_check_out()
+    shopping_cart_page.click_proceed_to_check_out()
 
     print("When they fill in the valid name field 'Maria Diaz'")
-    CheckoutPage.fill_valid_name_field()
+    check_out_page.fill_valid_name_field()
 
     print("And fill in the valid email field")
-    CheckoutPage.fill_valid_email_field()
+    check_out_page.fill_valid_email_field()
 
     print("And fill in the valid adress 'Calle Aragón, 25, Madrid'")
-    CheckoutPage.fill_valid_adress()
+    check_out_page.fill_valid_adress()
 
     print("And add an invalid card number '1111 4242 4242 4242'")
-    CheckoutPage.fill_invalid_card_number()
+    check_out_page.fill_invalid_card_number()
 
     print("And click on 'Complete purchase'")
-    CheckoutPage.click_complete_purchase()
+    check_out_page.click_complete_purchase()
 
     print("Then they should see a message with 'Tarjeta de crédito no válida'")
-    CheckoutPage.fill_invalid_card_number()
+    check_out_page.fill_invalid_card_number()
 
 
 def test_checkout_without_card_details(page: Page):
 
+    products_page = ProductsPage(page)
+    check_out_page = CheckoutPage(page)
+    shopping_cart_page = ShoppingcartPage(page)
+
     print("When the user enters to the products page")
-    ProductsPage.open_products_page()
+    products_page.open_products_page()
 
     print("When they filter by name 'palas'")
-    ProductsPage.filter_by_palas()
+    products_page.filter_by_palas()
 
     print("And add the product to the cart")
-    ProductsPage.click_product_to_the_cart()
+    products_page.click_product_to_the_cart()
 
     print("And visit the cart page")
-    ProductsPage.click_cart_page()
+    products_page.click_cart_page()
 
     print("And click on 'Proceed to checkout'")
-    ShoppingcartPage.click_proceed_to_check_out()
+    shopping_cart_page.click_proceed_to_check_out()
 
     print("When they fill in the valid name field 'Maria Diaz'")
-    CheckoutPage.fill_valid_name_field()
+    check_out_page.fill_valid_name_field()
 
     print("And fill in the valid email field")
-    CheckoutPage.fill_valid_email_field()
+    check_out_page.fill_valid_email_field()
 
     print("And fill in the valid adress 'Calle Aragón, 25, Madrid'")
-    CheckoutPage.fill_valid_adress()
+    check_out_page.fill_valid_adress()
 
     print("And click on 'Complete purchase'")
-    CheckoutPage.click_complete_purchase()
+    check_out_page.click_complete_purchase()
     
     print("Then the user should remain on the checkout page and the page URL should be 'https://web-qa.dev.adalab.es/checkout'")
-    CheckoutPage.verify_remain_checkout_page_and_url_checkout()
+    check_out_page.verify_remain_checkout_page_and_url_checkout()
 
     
