@@ -29,3 +29,6 @@ class ProductsPage:
 
     def verify_products_url(self):
         expect(self.page).to_have_url(self.url)
+
+    def filter_by_palas(self):
+        self.page.get_by_role("searchbox", name="Nombre").fill("palas")

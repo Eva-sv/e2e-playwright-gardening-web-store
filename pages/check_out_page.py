@@ -14,35 +14,35 @@ class CheckoutPage:
         expect(self.page.get_by_text("Envío5.00 €")).to_be_visible()
         expect(self.page.get_by_text("Total24.35 €")).to_be_visible()
 
-    def verify_valid_name_field(self):
-      self.page.get_by_role("textbox", name="Nombre Completo *").fill("Maria Diaz")
+    def valid_name_field(self):
+        self.page.get_by_role("textbox", name="Nombre Completo *").fill("Maria Diaz")
 
-    def verify_valid_email_field(self):
+    def valid_email_field(self):
          self.page.get_by_role("textbox", name="Email *").fill("test@gmail.com")
 
-    def verify_valid_adress(self):
+    def valid_adress(self):
          self.page.get_by_role("textbox", name="Dirección *").fill("CAlle Aragon, 25, Madrid")
 
-    def verify_valid_card_number(self):
+    def valid_card_number(self):
          self.page.get_by_role("textbox", name="Número de Tarjeta de Crédito *").fill("4242424242424242")
 
-    def verify_click_complete_purchase(self):
+    def click_complete_purchase(self):
         self.page.get_by_role("button", name="Completar Compra").click()
 
     def verify_message_purchase_completed_succesfully(self):
         expect(self.page.get_by_role("heading", name="¡Compra Realizada con Éxito!")).to_be_visible()
 
-    def verify_click_back_store(self):
+    def click_back_store(self):
         self.page.get_by_role("link", name="Volver a la Tienda").click()
 
     def verify_see_products_page(self):
         self.expect(self.page.get_by_role("heading", name="Catálogo de Productos")).to_be_visible()
 
-    def verify_invalid_card_number(self):
+    def invalid_card_number(self):
         self.page.get_by_role("textbox", name="Número de Tarjeta de Crédito *").click()
         self.page.get_by_role("textbox", name="Número de Tarjeta de Crédito *").fill("1111424242424242")
     
-    def verify_click_complete_purchase(self):
+    def click_complete_purchase(self):
         self.page.get_by_role("button", name="Completar Compra").click()
 
     def verify_message_invalid_card(self):
