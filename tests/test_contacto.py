@@ -1,6 +1,8 @@
 from playwright.sync_api import Page, expect
 from pages.contacto_page import ContactPage
 
+
+
 def test_submit_form_empty_required_message(page: Page):
     
     print("Given the user is on the contact page: Contáctanos | Vida Verde")
@@ -78,4 +80,3 @@ def test_submit_forms_with_valid_required_fields(page: Page):
     expect(page.get_by_role("heading", name="¡Mensaje enviado con éxito!")).to_be_visible()
     
     
-   
