@@ -33,6 +33,10 @@ class ProductsPage:
     def filter_by_palas(self):
         self.page.get_by_role("searchbox", name="Nombre").fill("palas")
 
+    def click_product_to_the_cart(self):
+         self.page.get_by_role("button", name="Añadir Juego de Palas al").click()
+    
+
 
 from playwright.sync_api import Page
 

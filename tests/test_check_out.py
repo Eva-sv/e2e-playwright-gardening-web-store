@@ -19,7 +19,7 @@ def test_checkout_with_valid_payment_details(page: Page):
     ProductsPage.filter_by_palas()
 
     print("And add the product to the cart")
-    page.get_by_role("button", name="Añadir Juego de Palas al").click()
+    ProductsPage.click_product_to_the_cart()
 
     print("And visit the cart page")
     page.get_by_role("link", name="Carrito de compra").click()
@@ -32,16 +32,16 @@ def test_checkout_with_valid_payment_details(page: Page):
     #ShoppingCartPage.verify_order_summary()
 
     print("When they fill in the valid name field 'Maria Diaz'")
-    CheckoutPage.valid_name_field()
+    CheckoutPage.fill_valid_name_field()
 
     print("And fill in the valid email field")
-    CheckoutPage.valid_email_field()
+    CheckoutPage.fill_valid_email_field()
 
     print("And fill in the valid adress 'Calle Aragón, 25, Madrid'")
-    CheckoutPage.valid_adress()
+    CheckoutPage.fill_valid_adress()
 
     print("And add a valid card number '4242 4242 4242 4242'")
-    CheckoutPage.valid_card_number()
+    CheckoutPage.fill_valid_card_number()
 
     print("And click on 'Complete purchase'")
     CheckoutPage.click_complete_purchase()
@@ -76,22 +76,22 @@ def test_checkout_with_invalid_card_details(page: Page):
     page.get_by_role("link", name="Proceder al Pago").click()
 
     print("When they fill in the valid name field 'Maria Diaz'")
-    CheckoutPage.valid_name_field()
+    CheckoutPage.fill_valid_name_field()
 
     print("And fill in the valid email field")
-    CheckoutPage.valid_email_field()
+    CheckoutPage.fill_valid_email_field()
 
     print("And fill in the valid adress 'Calle Aragón, 25, Madrid'")
-    CheckoutPage.valid_adress()
+    CheckoutPage.fill_valid_adress()
 
     print("And add an invalid card number '1111 4242 4242 4242'")
-    CheckoutPage.invalid_card_number()
+    CheckoutPage.fill_invalid_card_number()
 
     print("And click on 'Complete purchase'")
     CheckoutPage.click_complete_purchase()
 
     print("Then they should see a message with 'Tarjeta de crédito no válida'")
-    CheckoutPage.invalid_card_number()
+    CheckoutPage.fill_invalid_card_number()
 
 
 def test_checkout_without_card_details(page: Page):
@@ -112,13 +112,13 @@ def test_checkout_without_card_details(page: Page):
     page.get_by_role("link", name="Proceder al Pago").click()
 
     print("When they fill in the valid name field 'Maria Diaz'")
-    CheckoutPage.valid_name_field()
+    CheckoutPage.fill_valid_name_field()
 
     print("And fill in the valid email field")
-    CheckoutPage.valid_email_field()
+    CheckoutPage.fill_valid_email_field()
 
     print("And fill in the valid adress 'Calle Aragón, 25, Madrid'")
-    CheckoutPage.valid_adress()
+    CheckoutPage.fill_valid_adress()
 
     print("And click on 'Complete purchase'")
     CheckoutPage.click_complete_purchase()
