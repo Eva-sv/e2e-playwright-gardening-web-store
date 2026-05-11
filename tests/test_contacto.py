@@ -63,7 +63,7 @@ def test_submit_form_with_invalid_emails(page: Page):
     page.get_by_role("textbox", name="Mensaje *").fill("test mensaje")
     page.get_by_role("button", name="Enviar Mensaje").click()
     print("Then the error message is displayed: El email no es válido")
-    expect(page.get_by_text("El formato del email no es vá")).to_be_visible()
+    expect(page.get_by_text("El formato del email no es válido")).to_be_visible()
 
 def test_submit_forms_with_valid_required_fields(page: Page):
     print("Given the user is on the contact page Contáctanos | Vida Verde")
