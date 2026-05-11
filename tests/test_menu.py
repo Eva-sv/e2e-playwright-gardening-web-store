@@ -1,7 +1,7 @@
 from playwright.sync_api import Page, expect
 from pages.components.menu import Menu
 from pages.home_page import HomePage
-from pages.about_us_page import about_us_page
+from pages.about_us_page import AboutusPage
 from pages.products_page import ProductsPage
 from pages.contacto_page import ContactPage
 
@@ -10,7 +10,7 @@ from pages.contacto_page import ContactPage
 def test_visit_menu_links(page: Page):
     home_page = HomePage (page)
     menu = Menu(page)
-    about_us_page = about_us_page(page)
+    about_us_page = AboutusPage(page)
     products_page = ProductsPage(page)
     contacto_page = ContactPage(page)
    

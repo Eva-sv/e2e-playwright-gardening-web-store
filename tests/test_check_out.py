@@ -13,58 +13,59 @@ def test_checkout_with_valid_payment_details(page: Page):
     
     # Logica del ProductsPAge
     print("When the user enters to the products page")
-    ProductsPage.open_products_page()
+    products_page.open_products_page()
 
     print("When they filter by name 'palas'")
-    ProductsPage.filter_by_palas()
+    products_page.filter_by_palas()
 
     print("And add the product to the cart")
-    ProductsPage.click_product_to_the_cart()
+    products_page.click_product_to_the_cart()
 
     print("And visit the cart page")
-    ProductsPage.click_cart_page()
+    products_page.click_cart_page()
     
     # Logica del CartsPage
     print("And click on 'Proceed to checkout'")
-    ShoppingcartPage.click_proceed_to_check_out()
+    shopping_cart_page.click_proceed_to_check_out()
     
     print("Then they should see the order summary with:'product:juego de palas','price: 15.99', 'subtotal:15.99','iva: 3.36', 'shipping: 5', 'total: 24'")
-    ShoppingcartPage.verify_order_summary()
+    shopping_cart_page.verify_order_summary()
 
     print("When they fill in the valid name field 'Maria Diaz'")
-    CheckoutPage.fill_valid_name_field()
+    check_out_page.fill_valid_name_field()
 
     print("And fill in the valid email field")
-    CheckoutPage.fill_valid_email_field()
+    check_out_page.fill_valid_email_field()
 
     print("And fill in the valid adress 'Calle Aragón, 25, Madrid'")
-    CheckoutPage.fill_valid_adress()
+    check_out_page.fill_valid_adress()
 
     print("And add a valid card number '4242 4242 4242 4242'")
-    CheckoutPage.fill_valid_card_number()
+    check_out_page.fill_valid_card_number()
 
     print("And click on 'Complete purchase'")
-    CheckoutPage.click_complete_purchase()
+    check_out_page.click_complete_purchase()
 
     print("Then they should see the message 'Purchase completed successfully")
-    CheckoutPage.verify_message_purchase_completed_succesfully()
+    check_out_page.verify_message_purchase_completed_succesfully()
 
     print("And they should see the completed order page with: 'Resumen del pedido")
-    CheckoutPage.verify_order_summary()
+    check_out_page.verify_order_summary()
 
     print("When they click on 'Back to store'")
-    CheckoutPage.click_back_store()
+    check_out_page.click_back_store()
 
     print("Then they should see the products page: https://web_qa.dev.adalab.es/products")
-    CheckoutPage.verify_see_products_page()
+    check_out_page.verify_see_products_page()
 
     
 def test_checkout_with_invalid_card_details(page: Page):
+    
     print("When the user enters to the products page")
-    ProductsPage.open_products_page()
+    prod.open_products_page()
 
     print("When they filter by name 'palas'")
-    ProductsPage.filter_by_palas()
+    pro.filter_by_palas()
 
     print("And add the product to the cart")
     ProductsPage.click_product_to_the_cart()
