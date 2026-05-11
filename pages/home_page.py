@@ -13,5 +13,5 @@ class HomePage:
         self.page.goto(self.url)
 
     def verify_home_page_title(self):
-         expect(self.page.get_by_role("heading", name=self.title)).to_be_visible()
+        expect(self.page.get_by_role("heading", name=self.title)).to_be_visible()
         
