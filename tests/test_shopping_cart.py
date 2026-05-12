@@ -48,15 +48,14 @@ def test_add_products_to_cart_view_summary_and_empty_cart(page: Page):
     shopping_cart_page.verify_empty_cart_message()
     
   
-
-from playwright.sync_api import Page, expect
-
 def test_remove_products_from_cart_and_view_summary(page: Page):
-
+    products_page = ProductsPage(page)
     print("Given user visit the page 'Productos | Vida Verde'")
-    page.goto("https://web-qa.dev.adalab.es/products")
+    products_page.open_products_page()
+    
     print("When the user adds the Ficus to the cart")
     page.get_by_role("searchbox", name="Nombre").fill("ficus")
+    
     print("And the user clicks on the add to cart button")
     products_page = ProductsPage(page)
     products_page.adds_product_to_cart("Ficus Lyrata")
