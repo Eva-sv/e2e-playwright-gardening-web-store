@@ -2,7 +2,7 @@ from playwright.sync_api import Page, expect
 from pages.contacto_page import ContactPage
 
 
-
+#este primero no está refactorizado
 def test_submit_form_empty_required_message(page: Page):
     
     print("Given the user is on the contact page: Contáctanos | Vida Verde")
