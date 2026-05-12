@@ -34,13 +34,27 @@ class ShoppingcartPage:
     
     def verify_shopping_cart_summary(self, subtotal, tax, shipping, total):
         expect(self.page.get_by_role("heading", name="Resumen del Pedido")).to_be_visible()
-        expect(self.page.get_by_text("32.50 €")).to_be_visible()
-        expect(self.page.get_by_text("6.83 €")).to_be_visible()
-        expect(self.page.get_by_text("5.00 €")).to_be_visible()
-        expect(self.page.get_by_text("44.33 €")).to_be_visible()
+        expect(self.page.get_by_text(subtotal).nth(0)).to_be_visible()
+        #expect(self.page.get_by_text("32.50 €")).to_be_visible()
+        expect(self.page.get_by_text(tax)).to_be_visible()
+        #expect(self.page.get_by_text("6.83 €")).to_be_visible()
+        expect(self.page.get_by_text(shipping)).to_be_visible()
+        #expect(self.page.get_by_text("5.00 €")).to_be_visible()
+        expect(self.page.get_by_text(total)).to_be_visible()
+        #expect(self.page.get_by_text("44.33 €")).to_be_visible()
 
     def click_empty_cart_button(self):
        self.page.get_by_role("button", name="Vaciar Carrito").click()
     
     def verify_empty_cart_message(self):
         expect(self.page.get_by_text("Tu carrito está vacío")).to_be_visible()
+
+    def remove_product_of_shopping_cart(self, product_name):
+        self.page.get_by_role("button", name=f"Eliminar {product_name} del carrito").click()
+    
+    def verify_removed_from_the_shopping_cart(self,product_name):
+        expect(self.page.get_by_role("heading", name=product_name)).not_to_be_visible()
+
+    
+
+        

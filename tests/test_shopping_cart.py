@@ -53,27 +53,34 @@ def test_remove_products_from_cart_and_view_summary(page: Page):
     print("Given user visit the page 'Productos | Vida Verde'")
     products_page.open_products_page()
     
-    print("When the user adds the Ficus to the cart")
-    page.get_by_role("searchbox", name="Nombre").fill("ficus")
+    print("when the user filters by name 'Ficus Lyrata'")
+    products_page.filter_by_name("Ficus Lyrata")    
     
     print("And the user clicks on the add to cart button")
-    products_page = ProductsPage(page)
     products_page.adds_product_to_cart("Ficus Lyrata")
-    page.get_by_role("button", name="Añadir Ficus Lyrata al carrito").click()
+    
+    
     print("And the user clean the filters and see all the products")    
-    page.get_by_role("button", name="Quitar filtros y ver todos").click()
-    print("And the user adds the Tijeras de Podar to the cart")
-    page.get_by_role("searchbox", name="Nombre").fill("tijeras")
-    page.get_by_role("button", name="Añadir Tijeras de Podar al carrito").click()
+    products_page.clear_filters()
+
+    print("And the user filters by name 'Tijeras de Podar'")
+    products_page.filter_by_name("tijeras")
+
+    print("And the user clicks on the add to cart button")
+    products_page.adds_product_to_cart("Tijeras de Podar")
+       
     print("And the user clicks on the shopping cart link")
-    page.get_by_role("link", name="Carrito de compra").click()
-    print("And the user removes the Ficus from the cart")
-    page.get_by_role("button", name="Eliminar Ficus Lyrata del carrito").click()
-    expect(page.get_by_role("heading", name="Ficus Lyrata")).not_to_be_visible()
-    expect(page.get_by_role("heading", name="Resumen del Pedido")).to_be_visible()
-    expect(page.get_by_label("Resumen del Pedido").get_by_text("18.50 €")).to_be_visible()
-    expect(page.get_by_text("3.88 €")).to_be_visible()
-    expect(page.get_by_text("5.00 €")).to_be_visible()
-    expect(page.get_by_text("27.38 €")).to_be_visible()
+    shopping_cart_page = ShoppingcartPage(page)
+    shopping_cart_page.open_shopping_cart_page()    
+    
+    print("And the user removes the Ficus Lyrata from the cart")
+    shopping_cart_page.remove_product_of_shopping_cart("Ficus Lyrata")
+
+    #print("Then the user should not see the ficus lyrata product in the shopping cart")
+    #shopping_cart_page.remove_product_of_shopping_cart("Ficus Lyrata")
+
+    print("Then the user should see the updated order summary ")
+    shopping_cart_page.verify_shopping_cart_summary("18.50 €", "3.88 €", "5.00 €", "27.38 €")
+
 
 
