@@ -58,3 +58,10 @@ class ProductsPage:
 
     def get_no_results_message(self):
         return self.page.get_by_text("No se encontraron productos")
+
+    #Yohana
+    def clear_filters(self):
+        self.page.get_by_role("button", name="Quitar filtros").click()
+    def adds_product_to_cart(self, product_name):
+        self.page.get_by_role("button", name=f"Añadir {product_name} al carrito").click()
+    
