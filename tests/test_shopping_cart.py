@@ -3,19 +3,26 @@ from playwright.sync_api import Page, expect
 def test_add_products_to_cart_view_summary_and_empty_cart(page: Page):
 
     print("Given user visit the page 'Productos | Vida Verde'")
-    page.goto("https://web-qa.dev.adalab.es/products")
+    products_page.open_products_page(self)
+
     print("When the user adds the Sansevieria to the cart")
     page.get_by_role("searchbox", name="Nombre").fill("sansevieria")
+
     print("And the user clicks on the add to cart button")
     page.get_by_role("button", name="Añadir Sansevieria al carrito").click()
+
     print("And the user clean the filters and see all the products")    
-    page.get_by_role("button", name="Quitar filtros y ver todos").click()
+    page.get_by_role("button", name="Quitar filtros").click()
+
     print("And the user adds the Maceta de Barro Grande to the cart")
     page.get_by_role("searchbox", name="Nombre").fill("maceta de barro")
+
     print("And the user clicks on the add to cart button")
     page.get_by_role("button", name="Añadir Maceta de Barro Grande").click()
+
     print("And the user clicks on the shopping cart link")
     page.get_by_role("link", name="Carrito de compra").click()
+
     print("Then the user should see the shopping cart summary with the products added")
     expect(page.get_by_role("heading", name="Sansevieria")).to_be_visible()
     expect(page.get_by_text("Plantas")).to_be_visible()
