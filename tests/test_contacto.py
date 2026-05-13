@@ -2,23 +2,22 @@ from playwright.sync_api import Page, expect
 from pages.contacto_page import ContactPage
 
 
-#este primero no está refactorizado
 def test_submit_form_empty_required_message(page: Page):
-    
+    contact_page = ContactPage(page)
     print("Given the user is on the contact page: Contáctanos | Vida Verde")
-    page.goto("https://web-qa.dev.adalab.es/contact")
+    contact_page.open_contact_page()
     
     print("When they fill in the required name field")
-    page.get_by_role("textbox", name="Nombre *").fill("Marta Díaz")
+    contact_page.fill_contact_name("Marta Diaz")
     
     print("And they fill in the required email field")
-    page.get_by_role("textbox", name="Email *").fill("test@gmail.com")
+    contact_page.fill_contact_email("test@gmail.com")
     
     print("And they click on submit")
-    page.get_by_role("button", name="Enviar Mensaje").click()
+    contact_page.press_send_contact()
     
     print("Then they should see an error message: El mensaje es obligatorio")
-    expect(page.get_by_text("El mensaje es obligatorio")).to_be_visible()
+    contact_page.verify_message_error("El mensaje es obligatorio")
 
 
 from playwright.sync_api import Page, expect
