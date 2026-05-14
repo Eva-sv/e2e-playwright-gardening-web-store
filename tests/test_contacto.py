@@ -20,7 +20,6 @@ def test_submit_form_empty_required_message(page: Page):
     contact_page.verify_message_error("El mensaje es obligatorio")
 
 
-from playwright.sync_api import Page, expect
 
 def test_form_with_required_name_field_left_empty(page: Page):
     contact_page = ContactPage(page)
@@ -59,8 +58,6 @@ def test_empty_email_field_confirmation(page: Page):
     contact_page.verify_message_form("El email es obligatorio")
     
 
-
-
 def test_submit_form_with_invalid_emails(page: Page):
     print("Given the user is on the contact page Contáctanos | Vida Verde")
     contact_page = ContactPage(page)
@@ -80,6 +77,7 @@ def test_submit_form_with_invalid_emails(page: Page):
 
     print("Then the error message is displayed: El email no es válido")
     contact_page.verify_message_error("El email no es válido")
+    
 
 def test_submit_forms_with_valid_required_fields(page: Page):
     print("Given the user is on the contact page Contáctanos | Vida Verde")

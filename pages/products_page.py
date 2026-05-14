@@ -38,8 +38,8 @@ class ProductsPage:
 
 
     #lucia
-    def navigate(self):
-        self.page.goto("https://web-qa.dev.adalab.es/products")
+    #def navigate(self):
+        #self.page.goto("https://web-qa.dev.adalab.es/products")
 
     def filter_by_name(self, name):
         self.page.get_by_role("searchbox", name="Nombre").fill(name)
@@ -64,4 +64,7 @@ class ProductsPage:
         self.page.get_by_role("button", name="Quitar filtros").click()
     def adds_product_to_cart(self, product_name):
         self.page.get_by_role("button", name=f"Añadir {product_name} al carrito").click()
+    
+    def verify_filtered_product(self, product_name):
+        expect(self.page.get_by_text(product_name)).to_be_visible()
     
