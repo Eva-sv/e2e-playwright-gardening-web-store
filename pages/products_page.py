@@ -67,6 +67,7 @@ class ProductsPage:
     def adds_product_to_cart(self, product_name):
         self.page.get_by_role("button", name=f"Añadir {product_name} al carrito").click()
     
+    #
     def verify_filtered_product(self, product_name):
         expect(self.page.get_by_text(product_name)).to_be_visible()
     
