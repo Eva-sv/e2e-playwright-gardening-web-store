@@ -13,7 +13,7 @@ def test_visit_menu_links(page: Page):
     menu = Menu(page)
     about_us_page = AboutusPage(page)
     products_page = ProductsPage(page)
-    contacto_page = ContactPage(page)  
+    contact_page = ContactPage(page)  
 
 
     print("Given the user enters the 'Vida Verde' page")
@@ -32,7 +32,6 @@ def test_visit_menu_links(page: Page):
     about_us_page.verify_about_us_url()
     
     print("When the user clicks on 'Productos'")
-    page.get_by_role("button", name="Abrir menú principal").click()
     menu.visit_menu_products()
 
     print("Then they should see the tittle 'Catálogo de Productos'")
@@ -42,12 +41,11 @@ def test_visit_menu_links(page: Page):
     products_page.verify_products_url()
 
     print("When the user clicks on 'Contacto'")
-    page.get_by_role("button", name="Abrir menú principal").click()
     menu.visit_menu_contact()
 
     print("Then they should see the tittle 'Contáctanos'")
     contact_page.verify_contact_title()
-    #contact_page.verify_contact_title()
+    
 
     print("And they should see the URL 'https://web-qa.dev.adalab.es/contact'")
     contact_page.verify_contact_url()
