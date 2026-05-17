@@ -39,9 +39,9 @@ class CheckoutPage:
     def verify_see_products_page(self):
         expect(self.page.get_by_role("heading", name="Catálogo de Productos")).to_be_visible()
 
-    def fill_invalid_card_number(self):
-        self.page.get_by_role("textbox", name="Número de Tarjeta de Crédito *").click()
-        self.page.get_by_role("textbox", name="Número de Tarjeta de Crédito *").fill("1111424242424242")
+    #def fill_invalid_card_number(self):
+        #self.page.get_by_role("textbox", name="Número de Tarjeta de Crédito *").click()
+        #self.page.get_by_role("textbox", name="Número de Tarjeta de Crédito *").fill("1111424242424242")
     
     def click_complete_purchase(self):
         self.page.get_by_role("button", name="Completar Compra").click()
