@@ -13,7 +13,7 @@ class ShoppingcartPage:
         self.page.get_by_role("link", name="Proceder al Pago").click()
 
    # def verify_order_summary(self):
-       # expect(self.page.get_by_role("heading", name="Resumen del Pedido")).to_be_visible()
+        #expect(self.page.get_by_role("heading", name="Resumen del Pedido")).to_be_visible()
         #expect(self.page.get_by_text("Juego de Palas15.99 €")).to_be_visible()
         #expect(self.page.get_by_text("Subtotal (1)15.99 €")).to_be_visible()
         #expect(self.page.get_by_text("IVA (21%)3.36 €")).to_be_visible()

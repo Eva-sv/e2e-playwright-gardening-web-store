@@ -24,8 +24,8 @@ class CheckoutPage:
     def fill_valid_adress(self):
          self.page.get_by_role("textbox", name="Dirección *").fill("CAlle Aragon, 25, Madrid")
 
-    def fill_valid_card_number(self):
-         self.page.get_by_role("textbox", name="Número de Tarjeta de Crédito *").fill("4242424242424242")
+    def add_credit_card(self, card_number):
+         self.page.get_by_role("textbox", name="Número de Tarjeta de Crédito *").fill(card_number)
 
     def click_complete_purchase(self):
         self.page.get_by_role("button", name="Completar Compra").click()

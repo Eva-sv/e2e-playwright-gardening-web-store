@@ -54,8 +54,8 @@ def test_checkout_with_valid_payment_details(page: Page):
     print("And fill in the valid adress 'Calle Aragón, 25, Madrid'")
     check_out_page.fill_valid_adress()
 
-    print("And add a valid card number '4242 4242 4242 4242'")
-    check_out_page.fill_valid_card_number()
+    print("And add a valid card number ")
+    check_out_page.add_credit_card("4242424242424242")
 
     print("And click on 'Complete purchase'")
     check_out_page.click_complete_purchase()
@@ -103,14 +103,14 @@ def test_checkout_with_invalid_card_details(page: Page):
     print("And fill in the valid adress 'Calle Aragón, 25, Madrid'")
     check_out_page.fill_valid_adress()
 
-    print("And add an invalid card number '1111 4242 4242 4242'")
-    check_out_page.fill_invalid_card_number()
+    print("And add an invalid card number")
+    check_out_page.add_credit_card("1111424242424242")
 
     print("And click on 'Complete purchase'")
     check_out_page.click_complete_purchase()
 
     print("Then they should see a message with 'Tarjeta de crédito no válida'")
-    check_out_page.fill_invalid_card_number()
+    check_out_page.verify_message_invalid_card()
 
 
 def test_checkout_without_card_details(page: Page):
