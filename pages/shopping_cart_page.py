@@ -50,12 +50,7 @@ class ShoppingcartPage:
    
     def verify_products_total(self, total):
         expect(self.page.get_by_text(total)).to_be_visible()
-        
-      
-
-       
-
-
+          
     def click_empty_cart_button(self):
        self.page.get_by_role("button", name="Vaciar Carrito").click()
     

@@ -83,10 +83,10 @@ def test_checkout_with_invalid_card_details(page: Page):
     products_page.open_products_page()
 
     print("When they filter by name 'palas'")
-    products_page.filter_by_palas()
+    products_page.filter_by_name("Palas")
 
     print("And add the product to the cart")
-    products_page.click_product_to_the_cart()
+    products_page.adds_product_to_cart("Juego de Palas")
 
     print("And visit the cart page")
     products_page.click_cart_page()
@@ -123,10 +123,10 @@ def test_checkout_without_card_details(page: Page):
     products_page.open_products_page()
 
     print("When they filter by name 'palas'")
-    products_page.filter_by_palas()
+    products_page.filter_by_name("Palas")
 
     print("And add the product to the cart")
-    products_page.click_product_to_the_cart()
+    products_page.adds_product_to_cart("Juego de Palas")
 
     print("And visit the cart page")
     products_page.click_cart_page()
