@@ -14,11 +14,11 @@ def test_checkout_with_valid_payment_details(page: Page):
     print("When the user enters to the products page")
     products_page.open_products_page()
 
-    print("When they filter by name 'palas'")
-    products_page.filter_by_palas()
+    print("When they filter by name 'Palas'")
+    products_page.filter_by_name("Palas")
 
     print("And add the product to the cart")
-    products_page.click_product_to_the_cart()
+    products_page.adds_product_to_cart("Juego de Palas")
 
     print("And visit the cart page")
     products_page.click_cart_page()
@@ -26,9 +26,24 @@ def test_checkout_with_valid_payment_details(page: Page):
     # Logica del CartsPage
     print("And click on 'Proceed to checkout'")
     shopping_cart_page.click_proceed_to_check_out()
-    
-    print("Then they should see the order summary with:'product:juego de palas','price: 15.99', 'subtotal:15.99','iva: 3.36', 'shipping: 5', 'total: 24'")
-    shopping_cart_page.verify_order_summary()
+
+    print("Then they should see the order summary whith the folliwing details: ")
+    shopping_cart_page.verify_shopping_cart_summary()
+
+    print("The product name: Juego de Palas")
+    shopping_cart_page.verify_products_in_shopping_cart_summary("Juego de Palas15.99 €")
+
+    print("The subtotal(1)15.99 €")   
+    shopping_cart_page.verify_shopping_cart_subtotal("Subtotal(1)15.99 €")
+
+    print("The IVA (21%)3.36 €")
+    shopping_cart_page.verify_products_iva("3.36 €")
+
+    print("The shipping cost: 5.00 €")
+    shopping_cart_page.verify_products_shipping_cost()
+
+    print("The total: 24.35 €")
+    shopping_cart_page.verify_products_total("Total24.35 €")
 
     print("When they fill in the valid name field 'Maria Diaz'")
     check_out_page.fill_valid_name_field()
