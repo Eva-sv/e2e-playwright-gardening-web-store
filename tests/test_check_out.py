@@ -1,7 +1,10 @@
 from playwright.sync_api import Page, expect
+from pages import confirmation_page
 from pages.checkout_page import CheckoutPage
 from pages.products_page import ProductsPage
 from pages.shopping_cart_page import ShoppingcartPage
+from pages.confirmation_page import ConfirmationPage
+
 
 
 def test_checkout_with_valid_payment_details(page: Page):
@@ -61,13 +64,14 @@ def test_checkout_with_valid_payment_details(page: Page):
     check_out_page.click_complete_purchase()
 
     print("Then they should see the message 'Purchase completed successfully")
-    check_out_page.verify_message_purchase_completed_succesfully()
+    confirmation_page = ConfirmationPage(page)
+    confirmation_page.verify_message_purchase_completed_succesfully()
 
     print("And they should see the completed order page with: 'Resumen del pedido")
-    check_out_page.verify_order_summary()
+    confirmation_page.verify_order_summary()
 
     print("When they click on 'Back to store'")
-    check_out_page.click_back_store()
+    confirmation_page.click_back_store()
 
     print("Then they should see the products page: https://web_qa.dev.adalab.es/products")
     check_out_page.verify_see_products_page()
