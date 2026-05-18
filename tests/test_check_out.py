@@ -67,8 +67,23 @@ def test_checkout_with_valid_payment_details(page: Page):
     confirmation_page = ConfirmationPage(page)
     confirmation_page.verify_message_purchase_completed_succesfully()
 
-    print("And they should see the completed order page with: 'Resumen del pedido")
-    confirmation_page.verify_order_summary()
+    print("And they should see the completed order page with: 'Resumen del pedido'")
+    confirmation_page.verify_shopping_cart_summary("Resumen del Pedido")
+
+    print("And they should see The product name: Juego de Palas15.99 €")
+    confirmation_page.verify_product_name("Juego de Palas15.99 €")
+
+    print("And they should see The subtotal(1)15.99 €")
+    confirmation_page.verify_shopping_cart_subtotal("Subtotal(1)15.99 €")
+
+    print("And they should see The IVA (21%)3.36 €")
+    confirmation_page.verify_products_iva("3.36 €")
+
+    print("And they should see The shipping cost: 5.00 €")
+    confirmation_page.verify_products_shipping_cost()
+
+    print("And they should see The total: 24.35 €")
+    confirmation_page.verify_products_total("Total24.35 €")
 
     print("When they click on 'Back to store'")
     confirmation_page.click_back_store()
